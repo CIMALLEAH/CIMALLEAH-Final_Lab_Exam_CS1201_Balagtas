@@ -26,4 +26,6 @@ def main():
             print (f"Invalid choice. Please try again.{e}")
 
 if __name__ == "__main__":
+    game = DiceGame()
+    game.menu()
     main()
