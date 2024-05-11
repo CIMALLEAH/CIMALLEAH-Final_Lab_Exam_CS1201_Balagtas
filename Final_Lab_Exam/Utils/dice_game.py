@@ -3,14 +3,21 @@ from Utils.score import Score
 from Utils.user_manager import UserManager
 
 class DiceGame:
-    def __init__(self) -> None:
-        pass
+    
+    def __init__(self):
+        self.user_manager = UserManager()
+        self.current_user = None
+        self.load_scores()
 
     def load_scores(self):
-        pass
+        if not os.path.exists("data"):
+            os.makedirs("data")
+        if not os.path.exists("data/rankings.txt"):
+            open("data/rankings.txt", "w").close() 
 
-    def save_scores(self):
-        pass
+    def save_scores(self, username, game_id, points, wins):
+        with open("data/rankings.txt", "a") as file:
+            file.write(f"{username}, {game_id}, {points}, {wins}\n")
 
     def play_game(self):
         pass
@@ -19,7 +26,7 @@ class DiceGame:
         pass
 
     def logout(self):
-        pass
+        self.current_user = None
 
     def menu(self):
         pass
