@@ -21,7 +21,7 @@ def main():
                 raise ValueError
         
         except ValueError as e:
-            print ("Invalid choice. Please try again.", e)
+            print (f"Invalid choice. Please try again.{e}")
 
 if __name__ == "__main__":
     main()
