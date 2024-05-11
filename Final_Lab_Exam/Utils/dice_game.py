@@ -56,13 +56,15 @@ class DiceGame:
                     print("CPU wins this round!")
                 elif user_roll == cpu_roll:
                     print("It's a tie! Roll again...")
-                    rounds += 1
+                    rounds -= 1
             
             rounds += 1
 
             if player_points > cpu_points:
                 print(f"You win this stage, {username}!")
-                self.score.points += 3
+                self.score.points += 1
+                if self.score.stages_won == 0:
+                    self.score.points += 3
                 self.score.stages_won += 1
                 print(f"Total points: {self.score.points}, Stages won: {self.score.stages_won}")
                 choice = input("Enter 1 to continue to the next stage, 0 to stop: ")
@@ -70,14 +72,28 @@ class DiceGame:
                     continue
                 else:
                     break
-            else:
-                print("Game over. You didn’t win any stages.")
+            elif cpu_points > player_points:
+                print("Game over.")
                 break
 
         print("Returning to Menu. Thanks for playing!")
 
     def show_top_scores(self):
-        pass
+        scores = []
+        with open("data/rankings.txt", "r") as file:
+            for line in file:
+                parts = line.strip().split(",")
+                if len(parts) == 4:
+                    username, game_id, points, stages_won = parts
+                    scores.append((username, int(points)))
+
+        if scores:
+            scores.sort(key=lambda x: x[1], reverse=True)
+            print("Top 10 Scores:")
+            for i, (username, points) in enumerate(scores[:10], 1):
+                print(f"{i}. {username}: {points}")
+        else:
+            print("No scores yet.")
 
     def logout(self):
         self.current_user = None
