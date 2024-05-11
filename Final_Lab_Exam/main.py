@@ -1,3 +1,5 @@
+from Utils.dice_game import DiceGame
+
 def main():
     print ("Welcome to the Dice Roll Game ")
     print ("1. Register")
