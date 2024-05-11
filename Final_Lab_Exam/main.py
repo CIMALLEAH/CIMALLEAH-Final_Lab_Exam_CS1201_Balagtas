@@ -18,10 +18,10 @@ def main():
                 break
 
             else:
-                raise ValueError ("Invalid choice. Please try again.")
+                raise ValueError
         
         except ValueError as e:
-            print (e)
+            print ("Invalid choice. Please try again.", e)
 
 if __name__ == "__main__":
     main()
