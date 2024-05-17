@@ -5,12 +5,15 @@ def main():
 
     while True:
         try:
-            print ("Welcome to the Dice Roll Game!")
-            print (" 1. Register")
-            print (" 2. Login")
-            print (" 3. Exit")
+            print ("="*60)
+            print ("\t       Welcome to the Dice Roll Game!")
+            print ("="*60)
+            print ("\n       1. Register")
+            print ("       2. Login")
+            print ("       3. Exit")
             
-            choice = input ("\nEnter your choice: ")
+            choice = input ("\n  Enter your choice: ")
+            print("="*60)
 
             if choice == '1':
                 user_manager.register()

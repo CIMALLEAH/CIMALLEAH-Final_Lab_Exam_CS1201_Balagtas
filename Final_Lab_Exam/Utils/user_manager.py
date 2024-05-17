@@ -1,5 +1,4 @@
 import os
-import uuid
 from Utils.dice_game import DiceGame
 
 class UserManager:
@@ -33,32 +32,34 @@ class UserManager:
         return len(password) >= 8
     
     def register(self):
-        print("Registration")
+        print ("\t\t\tRegistration")
+        print ("="*60)
+
 
         while True: 
-            username = input ("Enter Username (atleast 4 characters long): ")
+            username = input ("\n  Enter Username(atleast 4 characters long): ")
 
             if not username:
-                print("Registration canceled. Returning to Main Menu.")
+                print ("\n  Registration canceled. Returning to Main Menu.")
                 return
             
             elif username in self.users:
-                print ("Username already exists. Please choose another username.")
+                print ("\n  Username already exists. Please choose another username.")
             
             elif not self.validate_username(username):
-                print ("Username must be atleast 4 characters long.")
+                print ("  Username must be atleast 4 characters long.")
             
             else:
                 break
 
         while True:
-            password = input ("Enter Password (atleast 8 characters long): ")
+            password = input ("\n  Enter Password(atleast 8 characters long): ")
             if not password:
-                print("Registration canceled. Returning to main menu.")
+                print ("\n  Registration canceled. Returning to main menu.")
                 return
                 
             elif not self.validate_password(password):
-                print ("Password must be atleast 8 characters long.")
+                print ("  Password must be atleast 8 characters long.")
                 
             else:
                 break
@@ -66,29 +67,30 @@ class UserManager:
         self.users[username] = password
         self.save_users()
     
-        print("Registration successful!")
+        print ("\n  Registration successful!")
 
     def login(self):
-        print ("Login")
-        username = input ("Enter Username: ")
-        password = input ("Enter Password: ")
+        print ("\t\t\t    Login")
+        print ("="*60)
+        username = input ("\n  Enter Username: ")
+        password = input ("\n  Enter Password: ")
 
         if username in self.users:
 
             if self.users[username] == password:
-                print ("Login successful!")
+                print ("\n  Login successful!")
                 dice_game = DiceGame(username, None)
                 while True:
                     result = dice_game.menu(username)
                     if result == "logout":
-                        print (f"Goodbye, {username}!")
-                        print ("You have logged out successfully!")
+                        print (f"\n  Goodbye, {username}!")
+                        print ("  You have logged out successfully!\n")
                         break
             
             else:
-                print ("Incorrect password. Please try again.")
+                print (" Incorrect password. Please try again.")
         
         else:
-            print ("User not found.")
+            print ("\n User not found.")
         
         return False
