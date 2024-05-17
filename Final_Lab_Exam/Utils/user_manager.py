@@ -1,5 +1,6 @@
 import os
 import uuid
+from Utils.dice_game import DiceGame
 
 class UserManager:
 
@@ -46,7 +47,6 @@ class UserManager:
             
             elif not self.validate_username(username):
                 print ("Username must be atleast 4 characters long.")
-                username = input ("Enter Username (atleast 4 characters long): ")
             
             else:
                 break
@@ -69,9 +69,6 @@ class UserManager:
         print("Registration successful!")
 
     def login(self):
-        from Utils.dice_game import DiceGame 
-
-
         print ("Login")
         username = input ("Enter Username: ")
         password = input ("Enter Password: ")
@@ -80,8 +77,7 @@ class UserManager:
 
             if self.users[username] == password:
                 print ("Login successful!")
-                game_id = str(uuid.uuid4())
-                dice_game = DiceGame(username, game_id)
+                dice_game = DiceGame(username, None)
                 while True:
                     result = dice_game.menu(username)
                     if result == "logout":
